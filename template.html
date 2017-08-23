@@ -1,0 +1,562 @@
+<!DOCTYPE HTML>
+<!--
+        Ethereal by HTML5 UP
+        html5up.net | @ajlkn
+        Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+        <head>
+
+                <title>Joey & Hannah</title>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+                <link rel="stylesheet" href="assets/css/main.css" />
+                <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+                <script src="assets/js/jquery.min.js"></script>
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+
+<style>
+    .scrolloff {
+        pointer-events: none;
+    }
+
+    .login {
+	display:none;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $('#map').addClass('scrolloff');                // set the mouse events to none when doc is ready
+        
+        $('#overlay').on("mouseup",function(){          // lock it when mouse up
+            $('#map').addClass('scrolloff'); 
+            //somehow the mouseup event doesn't get call...
+        });
+        $('#overlay').on("mousedown",function(){        // when mouse down, set the mouse events free
+            $('#map').removeClass('scrolloff');
+        });
+        $("#map").mouseleave(function () {              // becuase the mouse up doesn't work... 
+            $('#map').addClass('scrolloff');            // set the pointer events to none when mouse leaves the map area
+                                                        // or you can do it on some other event
+        });
+        
+    });
+</script>
+<script>
+$( document ).ready(function() {
+$( "#NameForm" ).submit(function( event ) {
+    $(this).children('input[type=submit]').attr('disabled', 'disabled');
+    event.preventDefault(); 
+    if ($("#NameInput").val() == "") {
+	console.log("No Name Given")
+	$("#ValidateName").text("Please Enter a Name");
+	
+    } else { 
+       console.log($("#NameInput").val()); 
+       $("#FinalNameLocation").val($("#NameInput").val());
+       console.log( $("#FinalNameLocation").val());
+        $("#Gifts").removeClass( "login" );
+        $(".login").css("display", "block");
+	$("#ValidateNameLarge").text("Thanks! Scroll Left put cursor on right end of the screen");
+	$("#ValidateNameSmall").text("Thanks! Scroll Down");
+    }
+    return false;
+
+});
+$( "#FinalForm" ).submit(function( event ) {
+$.ajax({
+    url: "api.php",
+    success: function(){
+      $(this).addClass("done");
+    }
+});
+
+});
+});
+</script>
+	</head>
+	<body>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Wrapper -->
+					<div id="wrapper">
+
+						<!-- Panel (Banner) -->
+							<section class="panel banner right">
+								<div class="content color1 span-3-75">
+									<h1 class="major">Welcome!</h1>
+									<p>Please enter your first name and last name:</p>
+                                                                       <form method="post" id="NameForm"  action="#">
+							                <div class="field half">
+                                                                        <input type='text' id="NameInput" name='Name'></input>
+                                                                         <p id="ValidateName" class="validate"></p>
+                                                                         </div>
+									<div class="field half">
+                                                                        <input type='submit' value='Submit' class="button special"/> 
+                                                                        </div>
+                                                                         <div class="field half">
+                                                                         </div>
+									<div class="field half">
+                                                                        </div>
+
+								        </form>
+									<ul class="actions">
+										<li><a href="#first" class="button special color1 circle icon fa-angle-right next login">Next</a></li>
+									</ul>
+								</div>
+								<div class="image filtered span-1-75" data-position="25% 25%">
+									<h1 style="font-size:2em">&nbsp</h1>
+									<h1 style="font-size:2.5em;text-align: center; vertical-align: middle;">Joey <span style="color:#ffcf00;">&</span></h1>
+									<h1 style="font-size:2.5em;text-align: center; vertical-align: middle;">Hannah</h1>
+								</div>
+							</section>
+
+						<!-- Panel (Spotlight) -->
+							<section class="panel spotlight medium color2 login" id="first">
+                                                                <div class="image filtered span-1-75" data-position="25% 25%">
+                                                                <img src="images/kiss.jpg" id="" alt="" /></div>
+							         <div class="inner column" >	<h2 class="major">We can't wait to see you</h2>
+									<p> From when we met ten years ago to when we became a couple six years ago, to now as we are getting ready to get married, we have been shaped by our family, friends and love ones. You have provided support, friendship and other things that have created our relationship. We now invite you to share in this culimination of our years together and a celebration of what's ahead!</p>
+<h3>Hannah and Joey</h3>
+								</div>
+							</section>
+
+						<!-- Panel -->
+							<section class="panel banner right color0 login">
+								<div class="content span-3-75">
+									<p><span style="font-family:'apples', Arial, Helvetica, sans-serif;font-size: 140%;">Our Wedding</span> will take place on Sunday, October 29, 2017
+at 6 till 11 at night at Chattahoochee Nature Center in Roswell GA. Food and refreshments will be provided. </p>
+                                                                     <form method="post" id="FinalForm" action="#">
+								     <input hidden name="Name" id="FinalNameLocation" value="" />
+									<div class="field half">
+										<input type="radio" id="Yes" name="RSVP" checked="">
+										<label for="Yes">We can come</label>
+									</div>
+									<div class="field half">
+										<input type="radio" id="No" name="RSVP">
+										<label for="No">We can't come</label>
+									</div>
+									<div class="field half">
+										<label for="demo-category">Party Size:</label>
+										<div class="select-wrapper">
+											<select name="demo-category" id="demo-category">
+												<option value="">-</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+											</select>
+									</div></div>
+                                                                        <div class="field half"><div class="g-recaptcha" data-sitekey="6Lfx0i0UAAAAAE7ch9eYgYmVbzzAqW3XKknsju9j"></div></div>
+<div class="field half"><input type="submit" value="Submit" class="button special"></div>
+
+									</form>
+								</div>
+							</section>
+
+						<!-- Panel (Spotlight) -->
+							<section class="panel spotlight medium left color2 login">
+								<div class="content">
+<h3>Extra Wedding Information</h3>
+<p><a href="https://www.google.com/maps/place/9135+Willeo+Rd,+Roswell,+GA+30075/@34.0038514,-84.3853033,17z/data=!3m1!4b1!4m5!3m4!1s0x88f50ce83bd88fab:0xdcb7a049d069ddc2!8m2!3d34.0038514!4d-84.38312">Chattahochee Nature Center: 
+9135 Willeo Road
+Roswell, GA 30075</a>
+</p>
+<p> Note, since the wedding is so close to halloween, we think it'll be fun if children (and children at heart) want to come in there fun (and for adults tasteful) halloween costume. </p> 
+<ul>
+<p>Hotels for out of towners nearby:</p>
+<li><a href="https://secure3.hilton.com/en_US/dt/reservation/book.htm?execution=e1s1">DoubleTree by Hilton Hotel Atlanta - Roswell</a></li>
+<li><a href="https://www.ihg.com/holidayinn/hotels/us/en/roswell/atlrs/hoteldetail">Holiday Inn Atlanta/Roswell</a></li>
+<li><a href="http://www.laquintaatlantaroswell.com/?cid=local_4008">La Quinta Inn & Suites Atlanta Roswell</a></li>
+</ul>
+
+							</div></section>
+							<section class="panel spotlight small left login map980">
+								<div class="image filtered tinted" data-position="bottom right">
+<div id="overlay" class="map" style="display:block;height:100%;width:100%;">
+    <iframe id="map" src="https://maps.google.com/maps?q=9135%20Willeo%20Road%20Roswell%2C%20GA%2030075&t=&z=14&ie=UTF8&output=embed" style="display:block;height:100%;width:100%;" frameborder="0" ></iframe>
+</div>
+								</div>
+							</section>
+
+						<!-- Panel -->
+					<section class="panel login" id="Gifts">
+								<div class="intro color0 span-3-75">
+									<h3>Gifts</h3>
+									<p>We love that you've decided to come! We believe that you coming is a great enought gift for us, but if you want to give something to us, I ask you to consider giving to one of our favorite charities before a gift. Between Us, our cats and dog and all of our never ending projects, there isn't alot of room left in our small house.</p>
+								</div>
+								<div class="gallery">
+									<div class="group span-3">
+										<a href="https://treesatlanta.org/support-us/honor-someone-with-a-tree/" class="image filtered span-3" data-position="bottom"><img src="images/gallery/thumbs/trees.jpg" alt="" /></a>
+										<a href="http://www.ourcac.org/donate-online/" class="image filtered span-1-5" data-position="center"><img src="images/gallery/thumbs/cac.jpg" alt="" /></a>
+										<a href="https://wpba.secureallegiance.com/wpba/WebModule/Donate.aspx?P=RD2016&PAGETYPE=PLG&CHECK=Biq2b044%2bs7Jwi8pqnen9hiCxtaFReuS" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/thumbs/wabe.jpg" alt="" /></a>
+									</div>
+
+									<div class="group span-3">
+										<a href="https://www.compassion.com/ways-to-donate.htm" class="image filtered span-1-5" data-position="top"><img src="images/gallery/thumbs/compassion.jpg" alt="" /></a>
+										<a href="https://www.splcenter.org/news/2017/08/07/story-field-prison-wedding-‘beautiful-moment’-under-ugly-circumstances" class="image filtered span-1-5" data-position="top"><img src="images/gallery/thumbs/splc.jpg" alt="" /></a>
+										<a href="https://action.aclu.org/donate-aclu?ms=web_menu_gift" class="image filtered span-3" data-position="bottom"><img src="images/gallery/thumbs/aclu.jpg" alt="" /></a>
+									</div>
+</div>	<div class="intro color1 span-2-75">
+									<h3>Registry</h3>
+									<p>Here a few items that we need and/or want in a few registrys on the web. We also have China pattern that I love that's gone out of date. We'd love any dishes <u>but</u> the salt and pepper shaker, any of the glasses, and the complete relish dish set.</p>
+<p>You can also just add to the Never ending rainy day projects fund for us.</p> 
+								</div>
+<div class="gallery">
+									<div class="group span-4-5">
+										<a href="http://www.replacements.com/webquote/pfaeas.htm" class="image filtered span-3" data-position="top"><img src="images/gallery/thumbs/eastside.png" alt="" /></a>
+										<a href="https://www.bedbathandbeyond.com/store/giftregistry/view_registry_guest.jsp?pwsToken=&eventType=Other&inventoryCallEnabled=true&registryId=544943088&pwsurl=" class="image filtered span-1-5" data-position="center"><img src="images/gallery/thumbs/sheets.jpg" alt="" /></a>
+										<a href="https://www.amazon.com/hz/wishlist/ls/2HKBC6TX0GO51/ref=cm_go_nav_hz" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/thumbs/amazon.jpg" alt="" /></a>
+										<a href="images/gallery/fulls/ikea.png" class="image filtered span-3" data-position="top"><img src="images/gallery/thumbs/ikea.jpg" alt="" /></a>
+									</div>
+									<a href="images/gallery/fulls/09.jpg" class="image filtered span-2-5" data-position="right"><img src="images/gallery/thumbs/09.jpg" alt="" /></a>
+								</div>
+							</section>
+
+<!---<section class="panel">
+								<div class="intro color2">
+									<h2 class="major">Elit integer</h2>
+									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam.</p>
+								</div>
+								<div class="gallery"><div class="modal" tabindex="-1"><div class="inner"><img src=""></div></div>
+									<div class="group span-3">
+										<a href="images/gallery/fulls/01.jpg" class="image filtered span-3" data-position="bottom"><img src="images/gallery/thumbs/01.jpg" alt=""></a>
+										<a href="images/gallery/fulls/02.jpg" class="image filtered span-1-5" data-position="center"><img src="images/gallery/thumbs/02.jpg" alt=""></a>
+										<a href="images/gallery/fulls/03.jpg" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/thumbs/03.jpg" alt=""></a>
+									</div>
+									<a href="images/gallery/fulls/04.jpg" class="image filtered span-2-5" data-position="top"><img src="images/gallery/thumbs/04.jpg" alt=""></a>
+									<div class="group span-4-5">
+										<a href="images/gallery/fulls/05.jpg" class="image filtered span-3" data-position="top"><img src="images/gallery/thumbs/05.jpg" alt=""></a>
+										<a href="images/gallery/fulls/06.jpg" class="image filtered span-1-5" data-position="center"><img src="images/gallery/thumbs/06.jpg" alt=""></a>
+										<a href="images/gallery/fulls/07.jpg" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/thumbs/07.jpg" alt=""></a>
+										<a href="images/gallery/fulls/08.jpg" class="image filtered span-3" data-position="top"><img src="images/gallery/thumbs/08.jpg" alt=""></a>
+									</div>
+									<a href="images/gallery/fulls/09.jpg" class="image filtered span-2-5" data-position="right"><img src="images/gallery/thumbs/09.jpg" alt=""></a>
+								</div>
+							</section>
+
+						 //Panel 
+							<section class="panel color4-alt login">
+								<div class="intro color4">
+									<h2 class="major">Contact</h2>
+									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam.</p>
+								</div>
+								<div class="inner columns divided">
+									<div class="span-3-25">
+										<form method="post" action="#">
+											<div class="field half">
+												<label for="name">Name</label>
+												<input type="text" name="name" id="name" />
+											</div>
+											<div class="field half">
+												<label for="email">Email</label>
+												<input type="email" name="email" id="email" />
+											</div>
+											<div class="field">
+												<label for="message">Message</label>
+												<textarea name="message" id="message" rows="4"></textarea>
+											</div>
+											<ul class="actions">
+												<li><input type="submit" value="Send Message" class="button special" /></li>
+											</ul>
+										</form>
+									</div>
+									<div class="span-1-5">
+										<ul class="contact-icons color1">
+											<li class="icon fa-twitter"><a href="#">@untitled-tld</a></li>
+											<li class="icon fa-facebook"><a href="#">facebook.com/untitled</a></li>
+											<li class="icon fa-snapchat-ghost"><a href="#">@untitled-tld</a></li>
+											<li class="icon fa-instagram"><a href="#">@untitled-tld</a></li>
+											<li class="icon fa-medium"><a href="#">medium.com/untitled</a></li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+						//Panel 
+							<section class="panel color2-alt login">
+								<div class="intro color2">
+									<h2 class="major">Elements</h2>
+									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam. </p>
+								</div>
+								<div class="inner columns aligned">
+									<div class="span-2-75">
+
+										<h3 class="major">Text</h3>
+										<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+										This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+										This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+
+										<h1>Heading Level 1</h1>
+										<h2>Heading Level 2</h2>
+										<h3>Heading Level 3</h3>
+										<h4>Heading Level 4</h4>
+										<h5>Heading Level 5</h5>
+										<h6>Heading Level 6</h6>
+
+									</div>
+									<div class="span-3">
+
+										<h4>Blockquote</h4>
+										<blockquote>Lorem ipsum dolor sit amet. Felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in vestibulum. Blandit adipiscing eu iaculis volutpat ac adipiscing volutpat ac adipiscing faucibus.</blockquote>
+
+										<h4>Preformatted</h4>
+										<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+    print 'Iteration ' + (i++);
+    deck.shuffle();
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+
+									</div>
+									<div class="span-1-25">
+
+										<h3 class="major">Lists</h3>
+
+										<h4>Unordered</h4>
+										<ul>
+											<li>Lorem ipsum dolor sit.</li>
+											<li>Dolor pulvinar etiam.</li>
+											<li>Etiam vel felis viverra.</li>
+										</ul>
+
+										<h4>Alternate</h4>
+										<ul class="alt">
+											<li>Lorem ipsum dolor sit.</li>
+											<li>Dolor pulvinar etiam.</li>
+											<li>Etiam vel felis viverra.</li>
+											<li>Felis enim feugiat.</li>
+										</ul>
+
+									</div>
+									<div class="span-1-5">
+
+										<h4>Ordered</h4>
+										<ol>
+											<li>Lorem ipsum dolor sit.</li>
+											<li>Dolor pulvinar etiam.</li>
+											<li>Etiam vel felis viverra.</li>
+											<li>Felis enim feugiat.</li>
+											<li>Etiam vel felis lorem.</li>
+										</ol>
+
+										<h4>Actions</h4>
+										<ul class="actions">
+											<li><a href="#" class="button special color2">Default</a></li>
+											<li><a href="#" class="button">Default</a></li>
+										</ul>
+										<ul class="actions vertical">
+											<li><a href="#" class="button special color2">Default</a></li>
+											<li><a href="#" class="button">Default</a></li>
+										</ul>
+
+									</div>
+									<div class="span-1-25">
+
+										<h4>Icons</h4>
+										<ul class="icons">
+											<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+											<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+											<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+											<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+											<li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>
+										</ul>
+
+										<h4>Contact Icons</h4>
+										<ul class="contact-icons color2">
+											<li class="icon fa-twitter"><a href="#">Twitter</a></li>
+											<li class="icon fa-facebook"><a href="#">Facebook</a></li>
+											<li class="icon fa-instagram"><a href="#">Instagram</a></li>
+											<li class="icon fa-github"><a href="#">GitHub</a></li>
+											<li class="icon fa-medium"><a href="#">Medium</a></li>
+										</ul>
+
+									</div>
+									<div class="span-3">
+										<h3 class="major">Table</h3>
+										<h4>Default</h4>
+										<div class="table-wrapper">
+											<table>
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Description</th>
+														<th>Price</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Item One</td>
+														<td>Ante turpis integer aliquet porttitor.</td>
+														<td>29.99</td>
+													</tr>
+													<tr>
+														<td>Item Two</td>
+														<td>Vis ac commodo adipiscing arcu aliquet.</td>
+														<td>19.99</td>
+													</tr>
+													<tr>
+														<td>Item Three</td>
+														<td> Morbi faucibus arcu accumsan lorem.</td>
+														<td>29.99</td>
+													</tr>
+													<tr>
+														<td>Item Four</td>
+														<td>Vitae integer tempus condimentum.</td>
+														<td>19.99</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td colspan="2"></td>
+														<td>100.00</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+									</div>
+									<div class="span-3">
+										<h4>Alternate</h4>
+										<div class="table-wrapper">
+											<table class="alt">
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Description</th>
+														<th>Price</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Item One</td>
+														<td>Ante turpis integer aliquet porttitor.</td>
+														<td>29.99</td>
+													</tr>
+													<tr>
+														<td>Item Two</td>
+														<td>Vis ac commodo adipiscing arcu aliquet.</td>
+														<td>19.99</td>
+													</tr>
+													<tr>
+														<td>Item Three</td>
+														<td> Morbi faucibus arcu accumsan lorem.</td>
+														<td>29.99</td>
+													</tr>
+													<tr>
+														<td>Item Four</td>
+														<td>Vitae integer tempus condimentum.</td>
+														<td>19.99</td>
+													</tr>
+													<tr>
+														<td>Item Five</td>
+														<td>Ante turpis integer aliquet porttitor.</td>
+														<td>29.99</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td colspan="2"></td>
+														<td>100.00</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+									</div>
+									<div class="span-2-25">
+										<h3 class="major">Buttons</h3>
+										<ul class="actions">
+											<li><a href="#" class="button special color2">Special</a></li>
+											<li><a href="#" class="button">Default</a></li>
+										</ul>
+										<ul class="actions">
+											<li><a href="#" class="button">Default</a></li>
+											<li><a href="#" class="button large">Large</a></li>
+											<li><a href="#" class="button small">Small</a></li>
+										</ul>
+										<ul class="actions">
+											<li><a href="#" class="button special color2 icon fa-cog">Icon</a></li>
+											<li><a href="#" class="button icon fa-diamond">Icon</a></li>
+										</ul>
+										<ul class="actions">
+											<li><span class="button special color2 disabled">Disabled</span></li>
+											<li><span class="button disabled">Disabled</span></li>
+										</ul>
+										<ul class="actions">
+											<li><a href="#" class="button special color2 circle icon fa-cog">Icon</a></li>
+											<li><a href="#" class="button circle icon fa-diamond">Icon</a></li>
+										</ul>
+									</div>
+									<div class="span-4-5">
+										<h3 class="major">Form</h3>
+										<form method="post" action="#">
+											<div class="field third">
+												<label for="demo-name">Name</label>
+												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
+											</div>
+											<div class="field third">
+												<label for="demo-email">Email</label>
+												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
+											</div>
+											<div class="field third">
+												<label for="demo-category">Category</label>
+												<div class="select-wrapper">
+													<select name="demo-category" id="demo-category">
+														<option value="">-</option>
+														<option value="1">Manufacturing</option>
+														<option value="1">Shipping</option>
+														<option value="1">Administration</option>
+														<option value="1">Human Resources</option>
+													</select>
+												</div>
+											</div>
+											<div class="field quarter">
+												<input type="radio" id="demo-priority-low" name="demo-priority" class="color2" checked />
+												<label for="demo-priority-low">Low Priority</label>
+											</div>
+											<div class="field quarter">
+												<input type="radio" id="demo-priority-high" name="demo-priority" class="color2" />
+												<label for="demo-priority-high">High Priority</label>
+											</div>
+											<div class="field quarter">
+												<input type="checkbox" id="demo-copy" name="demo-copy" class="color2" />
+												<label for="demo-copy">Email a copy</label>
+											</div>
+											<div class="field quarter">
+												<input type="checkbox" id="demo-human" name="demo-human" class="color2" checked />
+												<label for="demo-human">Not a robot</label>
+											</div>
+											<div class="field">
+												<label for="demo-message">Message</label>
+												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="2"></textarea>
+											</div>
+											<ul class="actions">
+												<li><input type="submit" value="Send Message" class="special color2" /></li>
+												<li><input type="reset" value="Reset" /></li>
+											</ul>
+										</form>
+									</div>
+								</div>
+							</section> -->
+
+						<!-- Copyright -->
+							<div class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
+
+					</div>
+
+			</div>
+</span>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
