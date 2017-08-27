@@ -1,0 +1,23 @@
+<? php
+
+
+$dbConfig= array (
+    "url" => '', 
+    "user" => '', 
+    "password" => '', 
+    "database" => ''
+);
+
+$mysqli = new mysqli( 
+   $dbConfig[$"url"], 
+   $dbConfig["user"], 
+   $dbConfig["password"], 
+   $dbConfig["database"]
+);
+
+$config = array(
+   "g_secret" => '',
+   "database" => $mysqli,
+   "logs" => $logs
+); 
+

@@ -16,12 +16,12 @@ $app->get('/hello/{name}', function($name) use($app) {
 $app->post('/submit', function(Request $request) {
     $data = json_decode($request->getContent(), true);
     try {
-        $verified = verifyGoogleRecaptcha($data[''], $config)
+        $verified = verifyGoogleRecaptcha($data['g-recaptcha-response'], $config)
 	if ($verfied == true) {
-	    $attendee = new Wedding\Attendee($data['name'], $config['database']);
-	    $attendee->isComing($data[''])
+	    $attendee = new Wedding\Attendee($data['Name'], $config['database']);
+	    $attendee->isComing($data['RSVP'])
             if ($attendee->isComing()){
-        	$attendee->PartyCount($data['']);
+        	$attendee->PartyCount($data['Size']);
     		return "We're so excited your coming";
 	    } else {
     		return "We appriciate your response. So sorry you can't make it.";
@@ -37,3 +37,4 @@ $app->post('/submit', function(Request $request) {
 });
 
 $app->run();
+
