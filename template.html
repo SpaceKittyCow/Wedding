@@ -15,7 +15,7 @@
                 <script src="assets/js/jquery.min.js"></script>
                 <script src='https://www.google.com/recaptcha/api.js'></script>
 
-<style>
+<style> //because sometimes you need a hammer
     .scrolloff {
         pointer-events: none;
     }
@@ -23,8 +23,18 @@
     .login {
 	display:none;
     }
+
+    @media screen and (max-width: 736px) {
+    .small { display: block; }  
+    .big   { display: none; }
+    }
+
+    @media screen and (min-width: 737px) {
+    .small { display: none; }  
+    .big   { display: block; }
+    }
 </style>
-<script>
+<script> //need to move to scripts
     $(document).ready(function () {
         $('#map').addClass('scrolloff');                // set the mouse events to none when doc is ready
         
@@ -55,22 +65,51 @@ $( "#NameForm" ).submit(function( event ) {
        console.log($("#NameInput").val()); 
        $("#FinalNameLocation").val($("#NameInput").val());
        console.log( $("#FinalNameLocation").val());
+	$("#ValidateName").text("");
         $("#Gifts").removeClass( "login" );
         $(".login").css("display", "block");
-	$("#ValidateNameLarge").text("Thanks! Scroll Left put cursor on right end of the screen");
-	$("#ValidateNameSmall").text("Thanks! Scroll Down");
+	$("#ValidateNameLarge").text("Thanks! Scroll Left, click the icon, or put cursor on right end of the screen");
+	$("#ValidateNameSmall").text("Thanks! Scroll Down or click the icon");
     }
     return false;
 
 });
 $( "#FinalForm" ).submit(function( event ) {
-$.ajax({
-    url: "api.php",
-    success: function(){
-      $(this).addClass("done");
-    }
-});
+    $(this).children('input[type=submit]').attr('disabled', 'disabled');
+    event.preventDefault(); 
+     var ajaxRequest;
 
+    /* Clear result div*/
+    $("#result").html('');
+
+    /* Get from elements values */
+    var values = $(this).serialize();
+
+    /* Send the data using post and put the results in a div */
+    /* I am not aborting previous request because It's an asynchronous request, meaning 
+       Once it's sent it's out there. but in case you want to abort it  you can do it by  
+       abort(). jQuery Ajax methods return an XMLHttpRequest object, so you can just use abort(). */
+       ajaxRequest= $.ajax({
+            url: "submit",
+            type: "post",
+            data: values
+        });
+
+      /*  request cab be abort by ajaxRequest.abort() */
+
+     ajaxRequest.done(function (response, textStatus, jqXHR){
+          // show successfully for submit message
+          $(".submitFinalForm").css("display", "none");
+          $("#resultSuccessIcon").css("display", "block");
+          $("#resultSuccess").html('<p>' + response + '</p>');
+     });
+
+     /* On failure of request this function will be called  */
+     ajaxRequest.fail(function (response){
+       console.log(response);
+       // show error
+       $("#resultFailure").html('Error. Please try again or email help@fuzzy-ideas.com');
+     });
 });
 });
 </script>
@@ -96,14 +135,15 @@ $.ajax({
 									<div class="field half">
                                                                         <input type='submit' value='Submit' class="button special"/> 
                                                                         </div>
-                                                                         <div class="field half">
+                                                                         <div class="field">
+                                                                         <p class="big" id="ValidateNameLarge"></p>
+                                                                         <p class="small" id="ValidateNameSmall"></p>
                                                                          </div>
-									<div class="field half">
-                                                                        </div>
 
 								        </form>
-									<ul class="actions">
-										<li><a href="#first" class="button special color1 circle icon fa-angle-right next login">Next</a></li>
+									<ul class="actions login">
+										<li><a href="#first" class="button special color1 circle icon fa-angle-right next big">Next</a></li>
+										<li><a href="#first" class="button special color1 circle icon fa-angle-down next small">Next</a></li>
 									</ul>
 								</div>
 								<div class="image filtered span-1-75" data-position="25% 25%">
@@ -119,15 +159,19 @@ $.ajax({
                                                                 <img src="images/kiss.jpg" id="" alt="" /></div>
 							         <div class="inner column" >	<h2 class="major">We can't wait to see you</h2>
 									<p> From when we met ten years ago to when we became a couple six years ago, to now as we are getting ready to get married, we have been shaped by our family, friends and love ones. You have provided support, friendship and other things that have created our relationship. We now invite you to share in this culimination of our years together and a celebration of what's ahead!</p>
-<h3>Hannah and Joey</h3>
+<form>
+<div class="field half"><h3>Hannah and Joey</h3></div><div class="field half">
+      <ul class="actions login">
+                                                                                <li><a href="#RSVP" class="button special color1 circle icon fa-angle-right next big">Next</a></li>
+                                                                                <li><a href="#RSVP" class="button special color1 circle icon fa-angle-down next small">Next</a></li>
+                                                                        </ul></div></form>
 								</div>
 							</section>
 
 						<!-- Panel -->
-							<section class="panel banner right color0 login">
-								<div class="content span-3-75">
-									<p><span style="font-family:'apples', Arial, Helvetica, sans-serif;font-size: 140%;">Our Wedding</span> will take place on Sunday, October 29, 2017
-at 6 till 11 at night at Chattahoochee Nature Center in Roswell GA. Food and refreshments will be provided. </p>
+							<section class="panel banner right color0 login" id="RSVP">
+								<div class="content span-4-25">
+									<p><span style="font-family:'apples', Arial, Helvetica, sans-serif;font-size: 140%;">Our Wedding</span> will take place on Sunday, October 29, 2017 at 6 till 11 at night at Chattahoochee Nature Center in Roswell GA. Food and refreshments will be provided. </p>
                                                                      <form method="post" id="FinalForm" action="#">
 								     <input hidden name="Name" id="FinalNameLocation" value="" />
 									<div class="field half">
@@ -141,8 +185,7 @@ at 6 till 11 at night at Chattahoochee Nature Center in Roswell GA. Food and ref
 									<div class="field half">
 										<label for="demo-category">Party Size:</label>
 										<div class="select-wrapper">
-											<select name="demo-category" id="demo-category">
-												<option value="">-</option>
+											<select name="Size" id="demo-category">
 												<option value="1">1</option>
 												<option value="2">2</option>
 												<option value="3">3</option>
@@ -153,14 +196,20 @@ at 6 till 11 at night at Chattahoochee Nature Center in Roswell GA. Food and ref
 											</select>
 									</div></div>
                                                                         <div class="field half"><div class="g-recaptcha" data-sitekey="6Lfx0i0UAAAAAE7ch9eYgYmVbzzAqW3XKknsju9j"></div></div>
-<div class="field half"><input type="submit" value="Submit" class="button special"></div>
-
+<div class="field half submitFinalForm"><input type="submit" value="Submit" class="button special submitFinalForm"></div>
+<div class="field half submitFinalForm"><p style="font-family: Arial, Helvetica, sans-serif;font-size: 0.7rem;font-weight: 700;height: 2.75rem;letter-spacing: 0.15rem;text-align: center;text-decoration: none;text-transform: uppercase;" class="submitFinalForm" id="resultFailure"></p></div>
+<div class="field half" id="resultSuccess"></div><div class="field half" style="display:none" id="resultSuccessIcon">
+     <ul class="actions login">
+                                                                                <li><a href="#Info" class="button special color1 circle icon fa-angle-right next big">Next</a></li>
+                                                                                <li><a href="#Info" class="button special color1 circle icon fa-angle-down next small">Next</a></li>
+                                                                        </ul>
+</div>
 									</form>
 								</div>
 							</section>
 
 						<!-- Panel (Spotlight) -->
-							<section class="panel spotlight medium left color2 login">
+							<section class="panel spotlight medium left color2 login" id="Info">
 								<div class="content">
 <h3>Extra Wedding Information</h3>
 <p><a href="https://www.google.com/maps/place/9135+Willeo+Rd,+Roswell,+GA+30075/@34.0038514,-84.3853033,17z/data=!3m1!4b1!4m5!3m4!1s0x88f50ce83bd88fab:0xdcb7a049d069ddc2!8m2!3d34.0038514!4d-84.38312">Chattahochee Nature Center: 
@@ -204,8 +253,7 @@ Roswell, GA 30075</a>
 									</div>
 </div>	<div class="intro color1 span-2-75">
 									<h3>Registry</h3>
-									<p>Here a few items that we need and/or want in a few registrys on the web. We also have China pattern that I love that's gone out of date. We'd love any dishes <u>but</u> the salt and pepper shaker, any of the glasses, and the complete relish dish set.</p>
-<p>You can also just add to the Never ending rainy day projects fund for us.</p> 
+									<p>Here a few items that we need and/or want in a few registrys on the web. We also have China pattern that we already use. </p>
 								</div>
 <div class="gallery">
 									<div class="group span-4-5">
@@ -214,7 +262,6 @@ Roswell, GA 30075</a>
 										<a href="https://www.amazon.com/hz/wishlist/ls/2HKBC6TX0GO51/ref=cm_go_nav_hz" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/thumbs/amazon.jpg" alt="" /></a>
 										<a href="images/gallery/fulls/ikea.png" class="image filtered span-3" data-position="top"><img src="images/gallery/thumbs/ikea.jpg" alt="" /></a>
 									</div>
-									<a href="images/gallery/fulls/09.jpg" class="image filtered span-2-5" data-position="right"><img src="images/gallery/thumbs/09.jpg" alt="" /></a>
 								</div>
 							</section>
 
