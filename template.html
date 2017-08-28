@@ -101,7 +101,7 @@ $( "#FinalForm" ).submit(function( event ) {
           // show successfully for submit message
           $(".submitFinalForm").css("display", "none");
           $("#resultSuccessIcon").css("display", "block");
-          $("#resultSuccess").html('<p>' + response + '</p>');
+          $("#resultSuccess").html(response);
      });
 
      /* On failure of request this function will be called  */
@@ -196,13 +196,12 @@ $( "#FinalForm" ).submit(function( event ) {
 												<option value="7">7</option>
 											</select>
 									</div></div>
-                                                                        <div class="field half"><div class="g-recaptcha" data-sitekey="6Lfx0i0UAAAAAE7ch9eYgYmVbzzAqW3XKknsju9j"></div></div>
-<div class="field half submitFinalForm"><input type="submit" value="Submit" class="button special submitFinalForm"></div>
-<div class="field half submitFinalForm"><p style="font-family: Arial, Helvetica, sans-serif;font-size: 0.7rem;font-weight: 700;height: 2.75rem;letter-spacing: 0.15rem;text-align: center;text-decoration: none;text-transform: uppercase;" class="submitFinalForm" id="resultFailure"></p></div>
-<div class="field half" id="resultSuccess"></div><div class="field half" style="display:none" id="resultSuccessIcon">
-     <ul class="actions login">
-                                                                                <li><a href="#Info" class="button special color1 circle icon fa-angle-right next big">Next</a></li>
-                                                                                <li><a href="#Info" class="button special color1 circle icon fa-angle-down next small">Next</a></li>
+                                                                   <!---     <div class="field half"><div class="g-recaptcha" data-sitekey="6Lfx0i0UAAAAAE7ch9eYgYmVbzzAqW3XKknsju9j"></div></div> --->
+<div class="field half"><input type="submit" value="Submit" class="button special submitFinalForm"><p id="resultSuccess"></p></div>
+
+<div class="field half "><p style="font-family: Arial, Helvetica, sans-serif;font-size: 0.7rem;font-weight: 700;height: 2.75rem;letter-spacing: 0.15rem;text-align: center;text-decoration: none;text-transform: uppercase;" class="submitFinalForm" id="resultFailure"></p>
+<ul class="actions login"><li><a href="#Info" class="button special color1 circle icon fa-angle-right next big">Next</a></li>
+<li><a href="#Info" class="button special color1 circle icon fa-angle-down next small">Next</a></li>
                                                                         </ul>
 </div>
 									</form>
@@ -217,15 +216,15 @@ $( "#FinalForm" ).submit(function( event ) {
 9135 Willeo Road
 Roswell, GA 30075</a>
 </p>
-<p> Note: since the wedding is so close to halloween, we think it'll be fun if children (and children at heart) want to come in there fun (and for adults tasteful) halloween costume. </p> 
-<form>
-<div class="field half">
-<p>Hotels near the Wedding:</p>
+<p>Recommended Hotels near the Wedding:</p>
 <ul>
 <li><a href="https://secure3.hilton.com/en_US/dt/reservation/book.htm?execution=e1s1">DoubleTree</a></li>
 <li><a href="https://www.ihg.com/holidayinn/hotels/us/en/roswell/atlrs/hoteldetail">Holiday Inn</a></li>
 <li><a href="http://www.laquintaatlantaroswell.com/?cid=local_4008">La Quinta Inn & Suites</a></li>
 </ul>
+<form>
+<div class="field half">
+<p> Note: since the wedding is so close to halloween, we think it'll be fun if children (and children at heart) want to come in there fun (and for adults tasteful) halloween costume. </p> 
 </div>
 <div class="field half">
      <ul class="actions login">
@@ -254,8 +253,8 @@ Roswell, GA 30075</a>
 </div>
 <div class="field half">
      <ul class="actions login">
-                                                                                <li><a href="#Other" class="button special color1 circle icon fa-angle-right next big">Next</a></li>
-                                                                                <li><a href="#Other" class="button special color1 circle icon fa-angle-down next small">Next</a></li>
+                                                                                <li><a href="#Registry" class="button special color1 circle icon fa-angle-right next big">Next</a></li>
+                                                                                <li><a href="#Registry" class="button special color1 circle icon fa-angle-down next small">Next</a></li>
                                                                         </ul>
 </div>
 </form>
@@ -273,9 +272,13 @@ Roswell, GA 30075</a>
 										<a href="https://www.splcenter.org/news/2017/08/07/story-field-prison-wedding-‘beautiful-moment’-under-ugly-circumstances" class="image filtered span-1-5" data-position="top"><img src="images/gallery/thumbs/splc.jpg" alt="" /></a>
 										<a href="https://action.aclu.org/donate-aclu?ms=web_menu_gift" class="image filtered span-3" data-position="bottom"><img src="images/gallery/thumbs/aclu.jpg" alt="" /></a>
 									</div>
-</div>	<div class="intro color1 span-2-75">
+</div>	<div id="Registry" class="intro color1 span-2-75">
 									<h3>Registry</h3>
 									<p>Here a few items that we need and/or want in a few registrys on the web. We also have China pattern that we already use. </p>
+     <ul class="actions login">
+                                                                                <li><a href="#Other" class="button special color1 circle icon fa-angle-right next big">Next</a></li>
+                                                                                <li><a href="#Other" class="button special color1 circle icon fa-angle-down next small">Next</a></li>
+                                                                        </ul>
 								</div>
 <div class="gallery">
 									<div class="group span-4-5">
