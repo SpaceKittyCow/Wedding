@@ -1,6 +1,6 @@
 {
   "autoload": {
-   "psr-4": {"ConnectFour\\":"src/"}
+   "psr-4": {"Wedding\\":"src/"}
   },
   "require" : {
     "silex/silex": "^1.3",
