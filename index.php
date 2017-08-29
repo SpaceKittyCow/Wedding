@@ -27,7 +27,7 @@ $app->post('/submit', function(Request $request, Silex\Application $app) {
             $attendee->commit();
 
             if ($attendee->isAttending()){
-    		return "We're glad you can make it.";
+    		return "We're glad you're coming.";
 	    } else {
     		return "We'll miss you.";
 	    }

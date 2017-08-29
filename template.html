@@ -25,13 +25,13 @@
     }
 
     @media screen and (max-width: 736px) {
-    .small { display: block; }  
     .big   { display: none; }
+    .smaller   { display: block; }
     }
 
     @media screen and (min-width: 737px) {
-    .small { display: none; }  
     .big   { display: block; }
+    .smaller   { display: none; }
     }
 
     .resultSuccess {display:none};
@@ -69,6 +69,7 @@ $( "#NameForm" ).submit(function( event ) {
        console.log( $("#FinalNameLocation").val());
 	$("#ValidateName").text("");
         $("#Gifts").removeClass( "login" );
+        $("#pictureHeight").css("height", "100%");
         $(".login").css("display", "block");
 	$("#ValidateNameLarge").text("Thanks! Scroll Left, click the icon, or put cursor on right end of the screen");
 	$("#ValidateNameSmall").text("Thanks! Scroll on Down");
@@ -139,7 +140,7 @@ $( "#FinalForm" ).submit(function( event ) {
                                                                         </div>
                                                                          <div class="field">
                                                                          <p class="big" id="ValidateNameLarge"></p>
-                                                                         <p class="small" id="ValidateNameSmall"></p>
+                                                                         <p class="smaller" id="ValidateNameSmall"></p>
                                                                          </div>
 
 								        </form>
@@ -160,11 +161,9 @@ $( "#FinalForm" ).submit(function( event ) {
                                                                 <img src="images/kiss3.jpg" id="" alt="" /></div>
 							         <div class="inner column" >	<h2 class="major">We can't wait to see you</h2>
 									<p> From when we met ten years ago, to when we became a couple six years ago, and now as we are getting ready to get married, we have been shaped by our family, friends and love ones. You have provided support, friendship and other things that have created our relationship. We now invite you to share in this culimination of our years together and a celebration of what's ahead.</p>
-<form>
-<div class="field half"><h3>Hannah and Joey</h3></div><div class="field half">
       <ul class="actions login">
                                                                                 <li><a href="#RSVP" class="button special color1 circle icon fa-angle-right next big">Next</a></li>
-                                                                        </ul></div></form>
+                                                                        </ul>
 								</div>
 							</section>
 
@@ -187,7 +186,7 @@ $( "#FinalForm" ).submit(function( event ) {
 										<div class="select-wrapper">
 											<select name="Size" id="demo-category">
 												<option value="0">0</option>
-												<option value="1">1</option>
+												<option value="1" selected >1</option>
 												<option value="2">2</option>
 												<option value="3">3</option>
 												<option value="4">4</option>
@@ -224,11 +223,11 @@ $( "#FinalForm" ).submit(function( event ) {
 								</div>
 							</section>
 
-						<!-- Panel -->
-<section class="panel login" id="Date">
-								<div class="intro small color0">
-<p><p><span style="font-family:'apples', Arial, Helvetica, sans-serif;font-size: 120%;">Since October 29</span> is so close to halloween, we think it'd be fun if children (and children at heart) want to come in there fun (and for adults tasteful) halloween costumes. </p> 
-     <ul class="actions login">
+						<!-- Panel (Spotlight) -->
+<section class="panel spotlight small login" id="Date">
+								<div class="image filtered span-1-75" data-position="25% 25%"> <img src="images/costume.jpg" id="" alt="" /></div>
+						 <div class="inner column" id="pictureHeight"  >
+<p style="vertical-align:bottom;"><br /><br /><br /><span style="font-family:'apples', Arial, Helvetica, sans-serif;font-size: 120%;">Since October 29</span> is so close to halloween, we think it'd be fun if children (and children at heart) want to come in there fun (and for adults tasteful) halloween costumes.</p> <ul class="actions">
                                                                                 <li><a href="#Gifts" class="button special color1 circle icon fa-angle-right next big">Next</a></li>
                                                                         </ul>
 								</div>
@@ -239,15 +238,9 @@ $( "#FinalForm" ).submit(function( event ) {
 								<div class="intro color0 span-3-75">
 									<h3>Gifts</h3>
 									<p>We love that you've decided to come! We believe that you coming is a great enought gift for us, but if you want to give something to us, I ask you to consider giving to one of our favorite charities before a gift. Between Us, our cats and dog and all of our never ending projects, there isn't alot of room left in our small house.</p>
-<form>
-<div class="field half">
-</div>
-<div class="field half">
      <ul class="actions login">
                                                                                 <li><a href="#Registry" class="button special color1 circle icon fa-angle-right next big">Next</a></li>
                                                                         </ul>
-</div>
-</form>
 
 								</div>
 								<div class="gallery">
@@ -280,9 +273,9 @@ $( "#FinalForm" ).submit(function( event ) {
 							</section>
 
 <section class="panel login" id="Other">
-								<div class="intro small color2">
+								<div class="intro small color0">
 									<h2 class="major">Other Questions</h2>
-									<p>Email us at help@fuzzy-ideas.com or call the phone number on the invitations. We'll try to get back to you as soon as possible</p>
+									<p>Email us at help@fuzzy-ideas.com or call the phone number on the invitations. We'll try to get back to you as soon as possible. Thank you so much for visiting!</p>
 								</div>
 </section>
 <!---								<div class="gallery"><div class="modal" tabindex="-1"><div class="inner"><img src=""></div></div>
