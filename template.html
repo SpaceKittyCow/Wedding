@@ -33,6 +33,8 @@
     .small { display: none; }  
     .big   { display: block; }
     }
+
+    .resultSuccess {display:none};
 </style>
 <script> //need to move to scripts
     $(document).ready(function () {
@@ -100,7 +102,7 @@ $( "#FinalForm" ).submit(function( event ) {
      ajaxRequest.done(function (response, textStatus, jqXHR){
           // show successfully for submit message
           $(".submitFinalForm").css("display", "none");
-          $("#resultSuccessIcon").css("display", "block");
+          $(".resultSuccess").css("display", "block");
           $("#resultSuccess").html(response);
      });
 
@@ -197,10 +199,10 @@ $( "#FinalForm" ).submit(function( event ) {
 											</select>
 									</div></div>
                                                                    <div class="field half"><!--- <div class="g-recaptcha" data-sitekey="6Lfx0i0UAAAAAE7ch9eYgYmVbzzAqW3XKknsju9j"></div> ---></div>
-<div class="field half"><input type="submit" value="Submit" class="button special submitFinalForm"><p id="resultSuccess"></p></div>
+<div class="field half"><input type="submit" value="Submit" class="button special submitFinalForm"><p class="resultSuccess" id="resultSuccess"></p></div>
 
 <div class="field half "><p style="font-family: Arial, Helvetica, sans-serif;font-size: 0.7rem;font-weight: 700;height: 2.75rem;letter-spacing: 0.15rem;text-align: center;text-decoration: none;text-transform: uppercase;" class="submitFinalForm" id="resultFailure"></p>
-<ul class="actions login"><li><a href="#Info" class="button special color1 circle icon fa-angle-right next big">Next</a></li>
+<ul class="actions resultSuccess"><li><a href="#Info" class="button special color1 circle icon fa-angle-right next big">Next</a></li>
 <li><a href="#Info" class="button special color1 circle icon fa-angle-down next small">Next</a></li>
                                                                         </ul>
 </div>
